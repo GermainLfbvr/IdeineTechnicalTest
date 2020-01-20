@@ -14,10 +14,19 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import recapTable from "./RecapTable";
 import {recursionCheckBoxControl, verifyChild} from "./CheckRules";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
+
+const useStyles = makeStyles({
+    container: {
+        maxHeight: 500,
+        marginTop: 20
+    },
+});
 
 function App() {
     let data = require('./data/Sectorisation');
+    const classes = useStyles();
 
     let [checkBoxControl] = useState(build_check_control(data.data.roots));
     const [ignored, setIgnored] = useState(0);
@@ -45,7 +54,7 @@ function App() {
             </TreeView>
             <Grid  container direction="row" justify="space-around">
                 <Grid item xs={5}>
-                    <TableContainer component={Paper}>
+                    <TableContainer component={Paper} className={classes.container}>
                         <Table aria-label="simple table">
                             <TableHead>
                                 <TableRow>
@@ -59,7 +68,7 @@ function App() {
                     </TableContainer>
                 </Grid>
                 <Grid item xs={5}>
-                    <TableContainer component={Paper}>
+                    <TableContainer component={Paper} className={classes.container}>
                         <Table aria-label="simple table">
                             <TableHead>
                                 <TableRow>
@@ -69,6 +78,7 @@ function App() {
                             <TableBody>
                                 {write}
                             </TableBody>
+
                         </Table>
                     </TableContainer>
                 </Grid>
